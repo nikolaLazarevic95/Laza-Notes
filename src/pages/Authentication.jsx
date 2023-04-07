@@ -21,7 +21,7 @@ export async function action({ request, params }) {
         email: data.get("email"),
         password: data.get("password"),
     };
-    const response = await createUserWithEmailAndPassword(
+    await createUserWithEmailAndPassword(
         auth,
         authData.email,
         authData.password

@@ -20,11 +20,7 @@ export async function action({ request, params }) {
         email: data.get("email"),
         password: data.get("password"),
     };
-    const response = await signInWithEmailAndPassword(
-        auth,
-        authData.email,
-        authData.password
-    )
+    await signInWithEmailAndPassword(auth, authData.email, authData.password)
         .then((userCredential) => {
             console.log(userCredential);
             redirect("/");
