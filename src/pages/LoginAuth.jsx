@@ -3,6 +3,8 @@ import { auth } from "../index";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import LogInForm from "../components/LogInForm";
 // import { createUserWithEmailAndPassword } from "firebase/auth";
+let authError = null;
+
 function LoginAuth() {
     return (
         <>
@@ -18,16 +20,25 @@ export async function action({ request, params }) {
         email: data.get("email"),
         password: data.get("password"),
     };
-    signInWithEmailAndPassword(auth, authData.email, authData.password)
+    const response = await signInWithEmailAndPassword(
+        auth,
+        authData.email,
+        authData.password
+    )
         .then((userCredential) => {
             console.log(userCredential);
+            redirect("/");
         })
         .catch((error) => {
+            authError = error;
             console.log(error);
         });
 
     // console.log(authData);
-    return redirect("/");
+    if (authError) {
+        return authError;
+    }
+    return null;
 }
 
 export default LoginAuth;

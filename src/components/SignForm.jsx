@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Form } from "react-router-dom";
+import { Form, useActionData } from "react-router-dom";
 
 function Copyright(props) {
     return (
@@ -44,6 +44,8 @@ export default function SignForm() {
     //     });
     // };
 
+    const data = useActionData();
+
     return (
         <Form method="post">
             <ThemeProvider theme={theme}>
@@ -73,6 +75,14 @@ export default function SignForm() {
                             // onSubmit={handleSubmit}
                             sx={{ mt: 3 }}
                         >
+                            {data && data.errors && (
+                                <ul>
+                                    {Object.values(data.errors).map((err) => (
+                                        <li key={err}>{err}</li>
+                                    ))}
+                                </ul>
+                            )}
+                            {data && data.message && <p>{data.message}</p>}
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <TextField

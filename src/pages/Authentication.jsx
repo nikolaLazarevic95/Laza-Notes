@@ -1,12 +1,15 @@
 import { redirect } from "react-router-dom";
-import SignUp from "../components/SignForm";
+import SignForm from "../components/SignForm";
 import { auth } from "../index";
 // import { signInWithEmailAndPassword } from "firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+
+let authError = null;
+
 function SignUpPage() {
     return (
         <>
-            <SignUp />
+            <SignForm />
         </>
     );
 }
@@ -18,16 +21,28 @@ export async function action({ request, params }) {
         email: data.get("email"),
         password: data.get("password"),
     };
-    createUserWithEmailAndPassword(auth, authData.email, authData.password)
+    const response = await createUserWithEmailAndPassword(
+        auth,
+        authData.email,
+        authData.password
+    )
         .then((userCredential) => {
             console.log(userCredential);
+
+            redirect("/");
         })
         .catch((error) => {
+            authError = error;
+            // return error;
             console.log(error);
         });
 
-    // console.log(authData);
-    return redirect("/");
+    if (authError) {
+        return authError;
+    }
+
+    // console.log(authError);
+    return null;
 }
 
 export default SignUpPage;

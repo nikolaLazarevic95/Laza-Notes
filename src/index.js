@@ -34,7 +34,7 @@ getDocs(colRef)
         snapshot.docs.forEach((doc) => {
             notes.push({ ...doc.data(), id: doc.id });
         });
-        console.log(notes);
+        // console.log(notes);
     })
     .catch((err) => {
         console.log(err.message);

@@ -5,7 +5,7 @@ import AuthenticationPage, {
 } from "./pages/Authentication";
 
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import LoginAuth, { action as loginAction } from "./pages/LoginAuth";
+import LoginAuthPage, { action as loginAction } from "./pages/LoginAuth";
 
 const router = createBrowserRouter([
     {
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "login",
-                element: <LoginAuth />,
+                element: <LoginAuthPage />,
                 action: loginAction,
             },
         ],
