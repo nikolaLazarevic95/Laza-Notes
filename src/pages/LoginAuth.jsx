@@ -14,6 +14,7 @@ function LoginAuth() {
 }
 
 export async function action({ request, params }) {
+    authError = null;
     const data = await request.formData();
 
     const authData = {
@@ -23,7 +24,6 @@ export async function action({ request, params }) {
     await signInWithEmailAndPassword(auth, authData.email, authData.password)
         .then((userCredential) => {
             console.log(userCredential);
-            redirect("/");
         })
         .catch((error) => {
             authError = error;
@@ -34,7 +34,7 @@ export async function action({ request, params }) {
     if (authError) {
         return authError;
     }
-    return null;
+    return redirect("/");
 }
 
 export default LoginAuth;

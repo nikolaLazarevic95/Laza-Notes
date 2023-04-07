@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Form, useActionData } from "react-router-dom";
+import { Form, useActionData, useNavigation } from "react-router-dom";
 
 function Copyright(props) {
     return (
@@ -45,6 +45,8 @@ export default function SignForm() {
     // };
 
     const data = useActionData();
+    const navigation = useNavigation();
+    const isSubmitting = navigation.state === "submitting";
 
     return (
         <Form method="post">
@@ -119,10 +121,11 @@ export default function SignForm() {
                                 </Button>
                                 <Button
                                     type="submit"
+                                    disabled={isSubmitting}
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2, ml: 26, mr: 0 }}
                                 >
-                                    Sign Up
+                                    {isSubmitting ? "........." : "Sign UP"}
                                 </Button>
                             </Grid>
                             <Grid container justifyContent="flex-end"></Grid>

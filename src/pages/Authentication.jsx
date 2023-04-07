@@ -15,6 +15,8 @@ function SignUpPage() {
 }
 
 export async function action({ request, params }) {
+    authError = null;
+
     const data = await request.formData();
 
     const authData = {
@@ -29,7 +31,7 @@ export async function action({ request, params }) {
         .then((userCredential) => {
             console.log(userCredential);
 
-            redirect("/");
+            // return redirect("/");
         })
         .catch((error) => {
             authError = error;
@@ -42,7 +44,7 @@ export async function action({ request, params }) {
     }
 
     // console.log(authError);
-    return null;
+    return redirect("/");
 }
 
 export default SignUpPage;
