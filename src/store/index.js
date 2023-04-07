@@ -1,6 +1,6 @@
 import { createStore } from "redux";
 
-const notesReducer = (state = { isLoggedIn: null }, action) => {
+const notesReducer = (state = { isSignedIn: null }, action) => {
     if (action.type === "signUp") {
         return {
             counter: state.isLoggedIn(true),
@@ -12,7 +12,7 @@ const notesReducer = (state = { isLoggedIn: null }, action) => {
         };
     }
 
-    if (action.type === "logOut") {
+    if (action.type === "signOut") {
         return {
             counter: state.isLoggedIn(false),
         };
