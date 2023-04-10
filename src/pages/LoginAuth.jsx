@@ -24,6 +24,8 @@ export async function action({ request, params }) {
     await signInWithEmailAndPassword(auth, authData.email, authData.password)
         .then((userCredential) => {
             console.log(userCredential);
+            const token = userCredential.user.accessToken;
+            localStorage.setItem("token", token);
         })
         .catch((error) => {
             authError = error;

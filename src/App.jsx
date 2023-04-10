@@ -1,4 +1,4 @@
-import MainPage from "./pages/Mainage";
+import MainPage from "./pages/Mainpage";
 import RootLayout from "./pages/Root";
 import AuthenticationPage, {
     action as authAction,
