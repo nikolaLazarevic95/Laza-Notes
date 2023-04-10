@@ -113,7 +113,7 @@ export default function SignForm() {
                                     //!link to login
                                     // type="submit"
                                     component={Link}
-                                    href="/login"
+                                    href="login"
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2, ml: 1 }}
                                 >
