@@ -4,10 +4,14 @@ import AuthenticationPage, {
     action as authAction,
 } from "./pages/Authentication";
 
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+    RouterProvider,
+    createBrowserRouter,
+    createHashRouter,
+} from "react-router-dom";
 import LoginAuthPage, { action as loginAction } from "./pages/LoginAuth";
 import { checkAuthLoader, tokenLoader } from "./util/auth";
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path: "/",
         element: <RootLayout />,
