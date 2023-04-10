@@ -111,12 +111,13 @@ export default function LogInForm() {
                                 <Button
                                     // type="submit"
                                     //link to signUP
-                                    href="auth"
+                                    href="/auth"
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2, ml: 1 }}
                                 >
                                     Sign UP
                                 </Button>
+
                                 <Button
                                     type="submit"
                                     disabled={isSubmitting}
