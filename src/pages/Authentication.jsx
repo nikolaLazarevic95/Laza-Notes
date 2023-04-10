@@ -30,7 +30,8 @@ export async function action({ request, params }) {
     )
         .then((userCredential) => {
             console.log(userCredential);
-
+            const token = userCredential.user.accessToken;
+            localStorage.setItem("token", token);
             // return redirect("/");
         })
         .catch((error) => {

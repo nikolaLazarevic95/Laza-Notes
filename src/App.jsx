@@ -1,4 +1,4 @@
-import MainPage from "./pages/MainPage";
+import MainPage from "./pages/Mainage";
 import RootLayout from "./pages/Root";
 import AuthenticationPage, {
     action as authAction,
@@ -6,13 +6,15 @@ import AuthenticationPage, {
 
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import LoginAuthPage, { action as loginAction } from "./pages/LoginAuth";
-
+import { checkAuthLoader, tokenLoader } from "./util/auth";
 const router = createBrowserRouter([
     {
         path: "/",
         element: <RootLayout />,
+        id: "root",
+        loader: tokenLoader,
         children: [
-            { index: true, element: <MainPage /> },
+            { index: true, loader: checkAuthLoader, element: <MainPage /> },
             {
                 path: "auth", //do relative paths, no / in children routes
                 element: <AuthenticationPage />,

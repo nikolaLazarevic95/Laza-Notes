@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import store from "./store/index";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -27,6 +27,7 @@ const db = getFirestore(); // initialize services
 
 const colRef = collection(db, "notes"); //collection data
 
+//getting data test
 getDocs(colRef)
     .then((snapshot) => {
         // get collection data
@@ -39,6 +40,11 @@ getDocs(colRef)
     .catch((err) => {
         console.log(err.message);
     });
+
+//subscribing to auth changes
+onAuthStateChanged(auth, (user) => {
+    // console.log("user status changed: ", user);
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
