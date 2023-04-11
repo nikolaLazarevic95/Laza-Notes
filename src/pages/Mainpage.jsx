@@ -1,5 +1,10 @@
+import MainScreen from "../components/MainScreen";
 function MainPage() {
-    return <h1> Main Page</h1>;
+    return (
+        <>
+            <MainScreen />
+        </>
+    );
 }
 
 export default MainPage;

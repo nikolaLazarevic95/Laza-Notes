@@ -1,4 +1,4 @@
-import MainPage from "./pages/Mainpage";
+import MainPage from "./pages/MainPage";
 import RootLayout from "./pages/Root";
 import AuthenticationPage, {
     action as authAction,
@@ -7,6 +7,7 @@ import AuthenticationPage, {
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import LoginAuthPage, { action as loginAction } from "./pages/LoginAuth";
 import { checkAuthLoader, tokenLoader } from "./util/auth";
+import { action as logoutAction } from "./pages/Logout";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
                 path: "login",
                 element: <LoginAuthPage />,
                 action: loginAction,
+            },
+            {
+                path: "logout",
+                action: logoutAction,
             },
         ],
     },
