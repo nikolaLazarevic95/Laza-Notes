@@ -25,8 +25,11 @@ import Avatar from "@mui/material/Avatar";
 // import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Form } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
 // import { Button } from "@mui/material";
+import { auth } from "../index";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const settings = [{ name: "Logout", route: "/logout" }];
 
@@ -103,6 +106,8 @@ const mdTheme = createTheme();
 
 function NotesContent() {
     const [open, setOpen] = React.useState(true);
+    const navigate = useNavigate();
+
     const toggleDrawer = () => {
         setOpen(!open);
     };
@@ -113,18 +118,22 @@ function NotesContent() {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseUserMenu = (e) => {
-        // console.log("haha");
+    async function handleCloseUserMenu(e) {
+        const action = e.target.innerHTML;
 
-        // const action = e.target.innerHTML;
-        // console.log(action);
+        if (action === "Logout") {
+            await signOut(auth)
+                .then(() => {
+                    localStorage.removeItem("token");
+                    navigate("/login");
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
 
-        // if (action === "Logout") {
-        //     console.log("logout!!!!");
-        //     return redirect("/logout");
-        // }
         setAnchorElUser(null);
-    };
+    }
 
     // const menuItemHandler = () => {};
 
@@ -196,15 +205,15 @@ function NotesContent() {
                             >
                                 {settings.map((setting) => (
                                     <MenuItem
-                                        key={setting}
+                                        key={setting.name}
                                         onClick={handleCloseUserMenu}
                                     >
-                                        <Form action="/logout" method="post">
+                                        {/* <Form action="/logout" method="post">
                                             <button>Logout</button>
-                                        </Form>
-                                        {/* <Typography textAlign="center">
+                                        </Form> */}
+                                        <Typography textAlign="center">
                                             {setting.name}
-                                        </Typography> */}
+                                        </Typography>
                                     </MenuItem>
                                 ))}
                             </Menu>
