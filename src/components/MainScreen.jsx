@@ -25,8 +25,8 @@ import Avatar from "@mui/material/Avatar";
 // import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Form, redirect } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Form } from "react-router-dom";
+// import { Button } from "@mui/material";
 
 const settings = [{ name: "Logout", route: "/logout" }];
 
