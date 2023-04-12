@@ -1,7 +1,7 @@
 import { redirect } from "react-router-dom";
 import SignForm from "../components/SignForm";
 import { auth } from "../index";
-// import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 let authError = null;
@@ -17,29 +17,53 @@ function SignUpPage() {
 export async function action({ request, params }) {
     authError = null;
 
-    const data = await request.formData();
+    const searchParams = new URL(request.url).searchParams;
+    const mode = searchParams.get("mode") || "login";
 
+    const data = await request.formData();
     const authData = {
         email: data.get("email"),
         password: data.get("password"),
     };
-    await createUserWithEmailAndPassword(
-        auth,
-        authData.email,
-        authData.password
-    )
-        .then((userCredential) => {
-            console.log(userCredential);
-            const token = userCredential.user.accessToken;
-            localStorage.setItem("token", token);
-            // return redirect("/");
-        })
-        .catch((error) => {
-            authError = error;
-            // return error;
-            console.log(error);
-        });
 
+    // if (mode !== "login" && mode !== "signUp") {
+    //     return redirect("auth?mode=login");
+    // }
+
+    if (mode === "signUp") {
+        await createUserWithEmailAndPassword(
+            auth,
+            authData.email,
+            authData.password
+        )
+            .then((userCredential) => {
+                console.log(userCredential);
+                const token = userCredential.user.accessToken;
+                localStorage.setItem("token", token);
+                // return redirect("/");
+            })
+            .catch((error) => {
+                authError = error;
+                // return error;
+                console.log(error);
+            });
+    }
+
+    if (mode === "login") {
+        await signInWithEmailAndPassword(
+            auth,
+            authData.email,
+            authData.password
+        )
+            .then((userCredential) => {
+                const token = userCredential.user.accessToken;
+                localStorage.setItem("token", token);
+            })
+            .catch((error) => {
+                authError = error;
+                console.log(error);
+            });
+    }
     if (authError) {
         return authError;
     }

@@ -9,7 +9,13 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Form, useActionData, useNavigation } from "react-router-dom";
+import {
+    Form,
+    useActionData,
+    useNavigation,
+    useSearchParams,
+    Link as LinkRouter,
+} from "react-router-dom";
 
 function Copyright(props) {
     return (
@@ -35,6 +41,9 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignForm() {
+    const [searchParams] = useSearchParams();
+    const isLogin = searchParams.get("mode") === "login";
+
     // const handleSubmit = (event) => {
     //     event.preventDefault();
     //     const data = new FormData(event.currentTarget);
@@ -69,7 +78,7 @@ export default function SignForm() {
                             />
                         }
                         <Typography component="h1" variant="h5">
-                            Sign up
+                            {isLogin ? "Login" : "Sign Up"}
                         </Typography>
                         <Box
                             // component="form"
@@ -109,15 +118,32 @@ export default function SignForm() {
                                 </Grid>
                             </Grid>
                             <Grid>
-                                <Button
+                                {/* <Button
                                     //!link to login
                                     // type="submit"
                                     component={Link}
-                                    href="/login"
+                                    href={`?mode=${isLogin ? "auth" : "login"}`}
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2, ml: 1 }}
                                 >
-                                    Sign In
+                                    {isLogin ? "Sign UP" : "Login"}{" "}
+                                </Button> */}
+                                <Button
+                                    variant="contained"
+                                    sx={{ mt: 3, mb: 2, ml: 1 }}
+                                >
+                                    <LinkRouter
+                                        style={{
+                                            textDecoration: "none",
+                                            backgroundColor: "transparent",
+                                            color: "white",
+                                        }}
+                                        to={`?mode=${
+                                            isLogin ? "signUp" : "login"
+                                        }`}
+                                    >
+                                        {isLogin ? "Sign UP" : "Login"}
+                                    </LinkRouter>
                                 </Button>
                                 <Button
                                     type="submit"
@@ -125,7 +151,7 @@ export default function SignForm() {
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2, ml: 26, mr: 0 }}
                                 >
-                                    {isSubmitting ? "........." : "Sign UP"}
+                                    {isSubmitting ? "........." : "SUBMIT"}
                                 </Button>
                             </Grid>
                             <Grid container justifyContent="flex-end"></Grid>

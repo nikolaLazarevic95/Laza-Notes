@@ -1,13 +1,13 @@
 import MainPage from "./pages/MainPage";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/Root";
 import AuthenticationPage, {
     action as authAction,
 } from "./pages/Authentication";
-
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import LoginAuthPage, { action as loginAction } from "./pages/LoginAuth";
 import { checkAuthLoader, tokenLoader } from "./util/auth";
 import { action as logoutAction } from "./pages/Logout";
+
 const router = createBrowserRouter([
     {
         path: "/",
