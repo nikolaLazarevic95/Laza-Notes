@@ -125,7 +125,7 @@ function NotesContent() {
             await signOut(auth)
                 .then(() => {
                     localStorage.removeItem("token");
-                    navigate("/login");
+                    navigate("/auth?mode=login");
                 })
                 .catch((err) => {
                     console.log(err);

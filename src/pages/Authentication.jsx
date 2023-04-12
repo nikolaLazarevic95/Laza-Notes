@@ -18,7 +18,7 @@ export async function action({ request, params }) {
     authError = null;
 
     const searchParams = new URL(request.url).searchParams;
-    const mode = searchParams.get("mode") || "login";
+    const mode = searchParams.get("mode") || "signUp";
 
     const data = await request.formData();
     const authData = {
@@ -26,9 +26,9 @@ export async function action({ request, params }) {
         password: data.get("password"),
     };
 
-    // if (mode !== "login" && mode !== "signUp") {
-    //     return redirect("auth?mode=login");
-    // }
+    if (mode !== "login" && mode !== "signUp") {
+        return redirect("auth?mode=login");
+    }
 
     if (mode === "signUp") {
         await createUserWithEmailAndPassword(
@@ -69,6 +69,7 @@ export async function action({ request, params }) {
     }
 
     // console.log(authError);
+    // return redirect("/auth?mode=login");
     return redirect("/");
 }
 

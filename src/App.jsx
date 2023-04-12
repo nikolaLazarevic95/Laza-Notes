@@ -4,9 +4,9 @@ import RootLayout from "./pages/Root";
 import AuthenticationPage, {
     action as authAction,
 } from "./pages/Authentication";
-import LoginAuthPage, { action as loginAction } from "./pages/LoginAuth";
+// import LoginAuthPage, { action as loginAction } from "./pages/LoginAuth";
 import { checkAuthLoader, tokenLoader } from "./util/auth";
-// import { action as logoutAction } from "./pages/Logout";
+import { action as logoutAction } from "./pages/Logout";
 
 const router = createBrowserRouter([
     {
@@ -21,15 +21,15 @@ const router = createBrowserRouter([
                 element: <AuthenticationPage />,
                 action: authAction,
             },
-            {
-                path: "login",
-                element: <LoginAuthPage />,
-                action: loginAction,
-            },
             // {
-            //     path: "logout",
-            //     action: logoutAction,
+            //     path: "login",
+            //     element: <LoginAuthPage />,
+            //     action: loginAction,
             // },
+            {
+                path: "logout",
+                action: logoutAction,
+            },
         ],
     },
 ]);
