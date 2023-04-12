@@ -263,6 +263,6 @@ function NotesContent() {
     );
 }
 
-export default function Dashboard() {
+export default function MainScreen() {
     return <NotesContent />;
 }
