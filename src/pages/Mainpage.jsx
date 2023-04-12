@@ -2,7 +2,8 @@ import MainScreen from "../components/MainScreen";
 function MainPage() {
     return (
         <>
-            <MainScreen />
+            {/* <MainScreen /> */}
+            <h1>hi</h1>
         </>
     );
 }
