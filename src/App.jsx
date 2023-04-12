@@ -1,4 +1,4 @@
-import MainPage from "./pages/MainPage";
+import MainPage from "./pages/MainPage2";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/Root";
 import AuthenticationPage, {
