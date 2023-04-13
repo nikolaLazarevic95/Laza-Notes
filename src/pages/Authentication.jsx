@@ -16,7 +16,6 @@ function SignUpPage() {
 
 export async function action({ request, params }) {
     authError = null;
-
     const searchParams = new URL(request.url).searchParams;
     const mode = searchParams.get("mode") || "signUp";
 
