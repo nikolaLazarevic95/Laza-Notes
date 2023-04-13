@@ -1,4 +1,4 @@
-import MainPage from "./pages/MainPage";
+import MainPageScreen from "./pages/MainPageScreen";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/Root";
 import AuthenticationPage, {
@@ -14,7 +14,11 @@ const router = createBrowserRouter([
         id: "root",
         loader: tokenLoader,
         children: [
-            { index: true, loader: checkAuthLoader, element: <MainPage /> },
+            {
+                index: true,
+                loader: checkAuthLoader,
+                element: <MainPageScreen />,
+            },
             {
                 path: "auth", //do relative paths, no / in children routes
                 element: <AuthenticationPage />,
