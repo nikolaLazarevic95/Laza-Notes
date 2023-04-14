@@ -3,10 +3,14 @@ import SignForm from "../components/SignForm";
 import { auth } from "../index";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useEffect } from "react";
 
 let authError = null;
 
 function SignUpPage() {
+    //try this to make /auth not accessible
+    useEffect(() => {}, []);
+
     return (
         <>
             <SignForm />
@@ -67,8 +71,6 @@ export async function action({ request, params }) {
         return authError;
     }
 
-    // console.log(authError);
-    // return redirect("/auth?mode=login");
     return redirect("/");
 }
 

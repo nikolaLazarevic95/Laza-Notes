@@ -4,7 +4,7 @@ import RootLayout from "./pages/Root";
 import AuthenticationPage, {
     action as authAction,
 } from "./pages/Authentication";
-import { checkAuthLoader, tokenLoader } from "./util/auth";
+import { checkAuthLoader, tokenLoader, checkIfLoggedIn } from "./util/auth";
 import { action as logoutAction } from "./pages/Logout";
 
 const router = createBrowserRouter([
@@ -23,6 +23,7 @@ const router = createBrowserRouter([
                 path: "auth", //do relative paths, no / in children routes
                 element: <AuthenticationPage />,
                 action: authAction,
+                loader: checkIfLoggedIn,
             },
             {
                 path: "logout",
