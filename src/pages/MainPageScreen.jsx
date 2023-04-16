@@ -2,8 +2,8 @@ import MainScreen from "../components/MainScreen";
 function MainPage() {
     return (
         <>
+            {/* //navbar itd */}
             <MainScreen />
-            {/* <h1>hi</h1> */}
         </>
     );
 }

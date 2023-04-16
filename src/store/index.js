@@ -1,26 +1,22 @@
-import { createStore } from "redux";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-const notesReducer = (state = { isSignedIn: null }, action) => {
-    if (action.type === "signUp") {
-        return {
-            counter: state.isLoggedIn(true),
-        };
-    }
-    if (action.type === "signIn") {
-        return {
-            counter: state.isLoggedIn(true),
-        };
-    }
+const initialAuthState = { isSignedIn: null, userEmail: null };
 
-    if (action.type === "signOut") {
-        return {
-            counter: state.isLoggedIn(false),
-        };
-    }
+const authSlice = createSlice({
+    name: "auth",
+    initialState: initialAuthState,
+    reducers: {
+        setUsername(state, action) {
+            state.userEmail = action.payload;
+            console.log(action);
+        },
+    },
+});
 
-    return state;
-};
+const store = configureStore({
+    reducer: authSlice.reducer,
+});
 
-const store = createStore(notesReducer);
+export const authActions = authSlice.actions; // to be imported to the component you need it
 
 export default store;

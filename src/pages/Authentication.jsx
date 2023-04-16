@@ -3,14 +3,12 @@ import SignForm from "../components/SignForm";
 import { auth } from "../index";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useEffect } from "react";
+import { authActions } from "../store/index";
+import store from "../store";
 
 let authError = null;
 
-function SignUpPage() {
-    //try this to make /auth not accessible
-    useEffect(() => {}, []);
-
+function Authentication() {
     return (
         <>
             <SignForm />
@@ -29,10 +27,6 @@ export async function action({ request, params }) {
         password: data.get("password"),
     };
 
-    if (mode !== "login" && mode !== "signUp") {
-        return redirect("auth?mode=login");
-    }
-
     if (mode === "signUp") {
         await createUserWithEmailAndPassword(
             auth,
@@ -43,6 +37,9 @@ export async function action({ request, params }) {
                 console.log(userCredential);
                 const token = userCredential.user.accessToken;
                 localStorage.setItem("token", token);
+                store.dispatch(
+                    authActions.setUsername(userCredential.user.email)
+                );
                 // return redirect("/");
             })
             .catch((error) => {
@@ -74,4 +71,4 @@ export async function action({ request, params }) {
     return redirect("/");
 }
 
-export default SignUpPage;
+export default Authentication;

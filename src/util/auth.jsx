@@ -8,10 +8,20 @@ export function tokenLoader() {
     return getAuthToken();
 }
 
-export function checkIfLoggedIn() {
+export function checkIfLoggedIn({ request }) {
     const token = getAuthToken();
     if (token) {
         return redirect("/");
+    }
+
+    //da usemeri gde treba ako nema moda u url
+    const searchParams = new URL(request.url).searchParams;
+    const mode = searchParams.get("mode");
+
+    // console.log(JSON.stringify(mode));
+    if (!mode) {
+        // console.log(mode);
+        return redirect("/auth?mode=signUp");
     }
     return null;
 }
