@@ -9,29 +9,22 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-// import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-// import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-// import NotificationsIcon from "@mui/icons-material/Notifications";
 import { mainListItems } from "./ListItems";
 import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
 //
 import Menu from "@mui/material/Menu";
 import Avatar from "@mui/material/Avatar";
-// import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-// import { Form, redirect } from "react-router-dom";
-// import { Button } from "@mui/material";
 import { auth } from "../index";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-
-const settings = [{ name: "Logout", route: "/logout" }];
+import { useSelector } from "react-redux";
 
 function Copyright(props) {
     return (
@@ -102,11 +95,16 @@ const Drawer = styled(MuiDrawer, {
 
 const mdTheme = createTheme();
 
-//user icon etc
-
+//! MAIN COMP STARTS HERE
 function NotesContent() {
     const [open, setOpen] = React.useState(true);
     const navigate = useNavigate();
+    const userEmail = useSelector((state) => state.auth.userEmail);
+
+    const settings = [
+        { name: userEmail },
+        { name: "Logout", route: "/logout" },
+    ];
 
     const toggleDrawer = () => {
         setOpen(!open);
@@ -120,6 +118,7 @@ function NotesContent() {
 
     async function handleCloseUserMenu(e) {
         const action = e.target.innerHTML;
+        // console.log(e.target);
 
         if (action === "Logout") {
             await signOut(auth)
@@ -179,7 +178,7 @@ function NotesContent() {
                                     sx={{ p: 0 }}
                                 >
                                     <Avatar
-                                        alt="Lemy Sharp"
+                                        alt={userEmail.toUpperCase()}
                                         src="/static/images/avatar/2.jpg"
                                     />
                                 </IconButton>
@@ -187,6 +186,7 @@ function NotesContent() {
                             {/* <Form action="/logout" method="post">
                                 <button>Logout</button>
                             </Form> */}
+
                             <Menu
                                 sx={{ mt: "45px" }}
                                 id="menu-appbar"
@@ -208,9 +208,9 @@ function NotesContent() {
                                         key={setting.name}
                                         onClick={handleCloseUserMenu}
                                     >
-                                        {/* <Form action="/logout" method="post">
-                                            <button>Logout</button>
-                                        </Form> */}
+                                        {/* <Typography textAlign="center">
+                                            {userEmail}
+                                        </Typography> */}
                                         <Typography textAlign="center">
                                             {setting.name}
                                         </Typography>

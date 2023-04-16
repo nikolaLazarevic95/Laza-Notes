@@ -3,7 +3,7 @@ import SignForm from "../components/SignForm";
 import { auth } from "../index";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { authActions } from "../store/index";
+import { authActions } from "../store/auth";
 import store from "../store";
 
 let authError = null;
@@ -58,6 +58,9 @@ export async function action({ request, params }) {
             .then((userCredential) => {
                 const token = userCredential.user.accessToken;
                 localStorage.setItem("token", token);
+                store.dispatch(
+                    authActions.setUsername(userCredential.user.email)
+                );
             })
             .catch((error) => {
                 authError = error;
