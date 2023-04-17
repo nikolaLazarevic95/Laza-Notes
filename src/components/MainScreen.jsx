@@ -25,6 +25,7 @@ import { auth } from "../index";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Outlet } from "react-router-dom";
 
 function Copyright(props) {
     return (
@@ -100,6 +101,8 @@ function NotesContent() {
     const [open, setOpen] = React.useState(true);
     const navigate = useNavigate();
     const userEmail = useSelector((state) => state.auth.userEmail);
+    const userEmailUppercase = userEmail.toUpperCase();
+    // const token = useLoaderData();
 
     const settings = [
         { name: userEmail },
@@ -178,7 +181,8 @@ function NotesContent() {
                                     sx={{ p: 0 }}
                                 >
                                     <Avatar
-                                        alt={userEmail.toUpperCase()}
+                                        // alt={userEmail.toUpperCase()}
+                                        alt={userEmailUppercase}
                                         src="/static/images/avatar/2.jpg"
                                     />
                                 </IconButton>
@@ -254,6 +258,7 @@ function NotesContent() {
                 >
                     <Toolbar />
                     {/* <h1>haha</h1> //! OVDE CONTENT DA OSTANE IZNAD COPYRIGHT-A U MAIN SCREEN */}
+                    <Outlet />
 
                     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                         <Grid container spacing={3}></Grid>

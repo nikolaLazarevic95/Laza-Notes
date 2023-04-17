@@ -1,16 +1,17 @@
-import { Outlet } from "react-router-dom";
-// import MainPageScreen from "../components/MainScreen";
+import { Outlet, useLoaderData } from "react-router-dom";
+import MainPageScreen from "../components/MainScreen";
 
 function Root() {
-    // const token = useLoaderData();
+    const token = useLoaderData();
 
     return (
         <>
-            {/* {token && <MainPageScreen />} */}
-
-            <main>
-                <Outlet />
-            </main>
+            {!token && (
+                <main>
+                    <Outlet />
+                </main>
+            )}
+            {token && <MainPageScreen />}
         </>
     );
 }

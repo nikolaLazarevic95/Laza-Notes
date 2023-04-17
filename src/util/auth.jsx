@@ -11,7 +11,7 @@ export function tokenLoader() {
 export function checkIfLoggedIn({ request }) {
     const token = getAuthToken();
     if (token) {
-        return redirect("/");
+        return redirect("/notes");
     }
 
     //da usemeri gde treba ako nema moda u url

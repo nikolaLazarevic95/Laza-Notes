@@ -71,7 +71,7 @@ export async function action({ request, params }) {
         return authError;
     }
 
-    return redirect("/");
+    return redirect("/notes");
 }
 
 export default Authentication;
