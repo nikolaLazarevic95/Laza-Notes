@@ -23,9 +23,13 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { auth } from "../index";
 import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import { ListItem, ListItemButton, ListItemIcon } from "@mui/material";
+import ListItemText from "@mui/material/ListItemText";
 
 function Copyright(props) {
     return (
@@ -100,8 +104,9 @@ const mdTheme = createTheme();
 function NotesContent() {
     const [open, setOpen] = React.useState(true);
     const navigate = useNavigate();
+    const location = useLocation();
     const userEmail = useSelector((state) => state.auth.userEmail);
-    const userEmailUppercase = userEmail.toUpperCase();
+    const userEmailUppercase = userEmail ? userEmail.toUpperCase() : "";
     // const token = useLoaderData();
 
     const settings = [
@@ -109,11 +114,25 @@ function NotesContent() {
         { name: "Logout", route: "/logout" },
     ];
 
+    const menuItems = [
+        {
+            title: "Notes",
+            icon: <LightbulbOutlinedIcon />,
+            path: "/notes",
+        },
+        {
+            title: "Trash",
+            icon: <DeleteOutlineOutlinedIcon />,
+            path: "/trash",
+        },
+    ];
+
     const toggleDrawer = () => {
         setOpen(!open);
     };
 
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    // const [selectedItem, setSelectedItem] = React.useState(0);
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
@@ -137,8 +156,11 @@ function NotesContent() {
         setAnchorElUser(null);
     }
 
-    // const menuItemHandler = () => {};
-
+    // function handleDrawerClicked(event, index, item) {
+    // setSelectedItem(index);
+    // console.log(item);
+    //     navigate(`${item.path}`);
+    // }
     return (
         <ThemeProvider theme={mdTheme}>
             <Box sx={{ display: "flex" }}>
@@ -239,9 +261,21 @@ function NotesContent() {
                     </Toolbar>
                     <Divider />
                     <List component="nav">
-                        {mainListItems}
-                        {/* <Divider sx={{ my: 1 }} /> */}
                         {/* {mainListItems} */}
+                        {menuItems.map((item, index) => (
+                            <ListItemButton
+                                key={item.path}
+                                selected={location.pathname === item.path}
+                                // selected={selectedItem === index}
+                                // onClick={(event) =>
+                                //     handleDrawerClicked(event, index, item)
+                                // }
+                                onClick={() => navigate(item.path)}
+                            >
+                                <ListItemIcon>{item.icon}</ListItemIcon>
+                                <ListItemText>{item.title}</ListItemText>
+                            </ListItemButton>
+                        ))}
                     </List>
                 </Drawer>
                 <Box

@@ -7,7 +7,7 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 
 export const mainListItems = (
     <React.Fragment>
-        <ListItemButton>
+        <ListItemButton autoFocus>
             <ListItemIcon>
                 <LightbulbOutlinedIcon />
             </ListItemIcon>
