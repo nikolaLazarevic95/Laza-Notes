@@ -8,6 +8,17 @@ import { checkAuthLoader, tokenLoader, checkIfLoggedIn } from "./util/auth";
 import { action as logoutAction } from "./pages/Logout";
 import NotesPage from "./pages/NotesPage";
 import TrashPage from "./pages/TrashPage";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+
+const theme = createTheme({
+    palette: {
+        background: {
+            // color: "white",
+            default: "white", //? zasto ne radi? i dalje je sivkasto
+        },
+    },
+});
 
 const router = createBrowserRouter([
     {
@@ -48,7 +59,12 @@ const router = createBrowserRouter([
     },
 ]);
 function App() {
-    return <RouterProvider router={router} />;
+    return (
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <RouterProvider router={router} />
+        </ThemeProvider>
+    );
 }
 
 export default App;

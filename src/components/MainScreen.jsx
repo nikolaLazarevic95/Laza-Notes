@@ -14,7 +14,7 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { mainListItems } from "./ListItems";
+// import { mainListItems } from "./ListItems";
 import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
 //
 import Menu from "@mui/material/Menu";
@@ -28,7 +28,7 @@ import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import { ListItem, ListItemButton, ListItemIcon } from "@mui/material";
+import { ListItemButton, ListItemIcon } from "@mui/material";
 import ListItemText from "@mui/material/ListItemText";
 
 function Copyright(props) {
@@ -291,7 +291,7 @@ function NotesContent() {
                     }}
                 >
                     <Toolbar />
-                    {/* <h1>haha</h1> //! OVDE CONTENT DA OSTANE IZNAD COPYRIGHT-A U MAIN SCREEN */}
+                    {/* //! OVDE CONTENT IZNAD COPYRIGHT-A U MAIN SCREEN */}
                     <Outlet />
 
                     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
