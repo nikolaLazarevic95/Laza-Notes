@@ -6,7 +6,10 @@ import AuthenticationPage, {
 } from "./pages/Authentication";
 import { checkAuthLoader, tokenLoader, checkIfLoggedIn } from "./util/auth";
 import { action as logoutAction } from "./pages/Logout";
-import NotesPage, { action as notesAction } from "./pages/NotesPage";
+import NotesPage, {
+    loader as notesLoader,
+    action as notesAction,
+} from "./pages/NotesPage";
 import TrashPage from "./pages/TrashPage";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
@@ -37,8 +40,9 @@ const router = createBrowserRouter([
             {
                 path: "notes",
                 //trebace ti loader za firebase load, da li moze u loaderu da se pozove dr loader?
-                loader: checkAuthLoader, //vrv ne treba laoder
+                // loader: checkAuthLoader, //vrv ne treba laoder
                 element: <NotesPage />,
+                loader: notesLoader,
                 action: notesAction,
                 //! future
                 // children: [
