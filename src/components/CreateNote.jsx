@@ -4,14 +4,16 @@ import { Form } from "react-router-dom";
 
 function CreateNote() {
     const [title, setTitle] = useState("");
+    const [titleErr, setTitleErr] = useState(false);
     const [description, setDescription] = useState("");
+    const [descriptionErr, setDescriptionErr] = useState(false);
     const [isTitleClicked, setIsTitleClicked] = useState(false);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log("Title:", title);
-        console.log("Description:", description);
-    };
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     console.log("Title:", title);
+    //     console.log("Description:", description);
+    // };
 
     const handleTitleClick = () => {
         setIsTitleClicked(true);
@@ -20,14 +22,31 @@ function CreateNote() {
         setIsTitleClicked(false);
     };
 
+    const handleCheckIfOk = () => {
+        setTitleErr(false);
+        setDescriptionErr(false);
+
+        if (title === "") {
+            setTitleErr(true);
+        }
+        if (description === "") {
+            setDescriptionErr(true);
+        }
+    };
+
     return (
         <>
             {/* <Container onClick={handleCloseTitleClick}> */}
             <Container>
                 <Box sx={{ maxWidth: 500, margin: "auto" }}>
                     <Paper sx={{ mt: 4 }}>
-                        <Form onSubmit={handleSubmit}>
+                        <Form method="post">
                             <TextField
+                                name="title"
+                                error={titleErr}
+                                helperText={
+                                    titleErr ? "Title cannot be empty" : ""
+                                }
                                 sx={{
                                     mt: 0,
                                     mb: 0,
@@ -35,10 +54,6 @@ function CreateNote() {
                                     "& .MuiOutlinedInput-notchedOutline": {
                                         border: 0,
                                     },
-                                }}
-                                InputProps={{
-                                    disableUnderline: true,
-                                    sx: { "&:focus": { outline: "none" } },
                                 }}
                                 fullWidth
                                 label="Title"
@@ -52,14 +67,21 @@ function CreateNote() {
                             />
                             {isTitleClicked && (
                                 <TextField
+                                    name="description"
                                     sx={{
-                                        mt: 0,
+                                        mt: 1,
                                         pt: 0,
                                         "& .MuiOutlinedInput-notchedOutline": {
                                             border: 0,
                                         },
                                     }}
                                     fullWidth
+                                    error={descriptionErr}
+                                    helperText={
+                                        descriptionErr
+                                            ? "Description cannot be empty"
+                                            : ""
+                                    }
                                     label="Description"
                                     variant="outlined"
                                     value={description}
@@ -68,18 +90,26 @@ function CreateNote() {
                                     }
                                     margin="normal"
                                     multiline
-                                    rows={4}
+                                    rows={2}
                                 />
                             )}
                             {isTitleClicked && (
                                 <Box
                                     sx={{
+                                        mr: 0.5,
+                                        ml: 0.5,
                                         display: "flex",
-                                        justifyContent: "flex-end",
+                                        justifyContent: "space-between",
                                     }}
                                 >
                                     <Button
-                                        // variant="o"
+                                        color="primary"
+                                        type="submit"
+                                        onClick={handleCheckIfOk}
+                                    >
+                                        Save
+                                    </Button>
+                                    <Button
                                         color="primary"
                                         // type="submit"
                                         onClick={handleCloseTitleClick}

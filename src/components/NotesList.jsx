@@ -1,4 +1,4 @@
-import { Container, Grid, Paper } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import NoteCard from "./NoteCard";
 
 const futureNotesArr = [
@@ -11,13 +11,14 @@ const futureNotesArr = [
     { title: "Telefon", description: " Plati racun" },
 ];
 
-function Notes() {
+function NotesList() {
     return (
         <>
             <Container sx={{ mt: 4 }}>
                 <Grid container spacing={3}>
                     {futureNotesArr.map((note) => (
                         <Grid item key={note.title} xs={12} md={6} lg={3}>
+                            {/* //ovde dynamic link to the noteDetailPage i u njega  paste data form the loader*/}
                             <NoteCard note={note} />
                         </Grid>
                     ))}
@@ -27,4 +28,4 @@ function Notes() {
     );
 }
 
-export default Notes;
+export default NotesList;

@@ -6,7 +6,7 @@ import AuthenticationPage, {
 } from "./pages/Authentication";
 import { checkAuthLoader, tokenLoader, checkIfLoggedIn } from "./util/auth";
 import { action as logoutAction } from "./pages/Logout";
-import NotesPage from "./pages/NotesPage";
+import NotesPage, { action as notesAction } from "./pages/NotesPage";
 import TrashPage from "./pages/TrashPage";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
@@ -39,6 +39,14 @@ const router = createBrowserRouter([
                 //trebace ti loader za firebase load, da li moze u loaderu da se pozove dr loader?
                 loader: checkAuthLoader, //vrv ne treba laoder
                 element: <NotesPage />,
+                action: notesAction,
+                //! future
+                // children: [
+                //ima svoj loader
+                //     {path: ":noteId", element: <NoteDetailPage />},
+                //vuce loader is parent route i populate info iz njega?
+                //     {path: ":noteId/edit", element: <EditNotePage />},
+                // ],
             },
             {
                 path: "trash",
