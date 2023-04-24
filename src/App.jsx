@@ -13,6 +13,10 @@ import NotesPage, {
 import TrashPage from "./pages/TrashPage";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
+import NoteDetailPage, {
+    loader as noteDetailLoader,
+} from "./pages/NoteDetailPage";
+// import EditNotePage from "./pages/EditNotePage";
 
 const theme = createTheme({
     palette: {
@@ -33,6 +37,7 @@ const router = createBrowserRouter([
             {
                 //mora ovako jer je render "/" da nije loader i index true ovde, a zelis po default da ide na /notes posle logina
                 index: true,
+                // path: "",
                 // path: "notes",
                 loader: checkAuthLoader,
                 // element: <NotesPage />,
@@ -44,14 +49,28 @@ const router = createBrowserRouter([
                 element: <NotesPage />,
                 loader: notesLoader,
                 action: notesAction,
-                //! future
-                // children: [
-                //ima svoj loader
-                //     {path: ":noteId", element: <NoteDetailPage />},
-                //vuce loader is parent route i populate info iz njega?
-                //     {path: ":noteId/edit", element: <EditNotePage />},
-                // ],
+                children: [
+                    {
+                        path: ":noteId",
+                        loader: noteDetailLoader,
+                        element: <NoteDetailPage />,
+                        // children: [
+                        //     //action: deleteEventAction,, loader uzima od parenta
+                        //     {
+                        //         // index: true,
+                        //     },
+                        //     // vuce loader is parent route i populate info iz njega?
+                        //     // { path: "edit", element: <EditNotePage /> },
+                        // ],
+                    },
+                ],
             },
+            // {
+            //     path: "notes/:noteId",
+            //     loader: noteDetailLoader,
+            //     element: <NoteDetailPage />,
+            // },
+
             {
                 path: "trash",
                 loader: checkAuthLoader,

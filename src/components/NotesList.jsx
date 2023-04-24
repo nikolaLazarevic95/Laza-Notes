@@ -1,15 +1,6 @@
 import { Container, Grid } from "@mui/material";
 import NoteCard from "./NoteCard";
-
-// const futureNotesArr = [
-//     { title: "Uperi auto", description: " u perionici" },
-//     { title: "auto", description: " u ponici" },
-//     { title: "Knjiga", description: " lupi je" },
-//     { title: "Biblioteka", description: " Vrati je" },
-//     { title: "Indijanci", description: " Javi se " },
-//     { title: "Brijac", description: "Obri se" },
-//     { title: "Telefon", description: " Plati racun" },
-// ];
+import { Link } from "react-router-dom";
 
 function NotesList({ notes }) {
     return (
@@ -17,9 +8,18 @@ function NotesList({ notes }) {
             <Container sx={{ mt: 4 }}>
                 <Grid container spacing={3}>
                     {notes.map((note) => (
-                        <Grid item key={note.title} xs={12} md={6} lg={3}>
+                        <Grid item key={note.id} xs={12} md={6} lg={3}>
                             {/* //ovde dynamic link to the noteDetailPage i u njega  paste data form the loader*/}
-                            <NoteCard note={note} />
+                            <Link
+                                // to={`/notes/${note.id}`}
+                                // to={"/trash"} //working fine
+                                to={note.id}
+                                style={{ textDecoration: "none" }}
+                            >
+                                {/* umesto Link , da stavim handleClick pa u njemu da podesimo modal u reduxu 
+                                pa use navigate da se preusmeri na modal za pojedinacan */}
+                                <NoteCard note={note} />
+                            </Link>
                         </Grid>
                     ))}
                 </Grid>

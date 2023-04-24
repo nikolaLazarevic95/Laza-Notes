@@ -25,6 +25,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+// eslint-disable-next-line no-unused-vars
 const auth = getAuth(app);
 const db = getFirestore(); // initialize services
 const colRef = collection(db, "notes"); //collection data
