@@ -1,12 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialUISlice = { isSignedIn: null, userEmail: null };
+const initialUISlice = { isOpen: false };
 
 const UISlice = createSlice({
-    name: "auth",
+    name: "ui",
     initialState: initialUISlice,
-    reducers: {},
+    reducers: {
+        setIsOpen(state, action) {
+            state.isOpen = action.payload;
+        },
+        // setIsClose(state, action) {
+        //     state.isOpen = action.payload;
+        // },
+    },
 });
 
-export const authActions = UISlice.actions; // to be imported to the component you need it
+export const UIActions = UISlice.actions; // to be imported to the component you need it
 export default UISlice.reducer;

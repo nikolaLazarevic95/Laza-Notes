@@ -1,4 +1,3 @@
-// import { colRef } from "..";
 import { initializeApp } from "firebase/app";
 import {
     getFirestore,
@@ -11,7 +10,7 @@ import { getAuth } from "firebase/auth";
 
 import { addDoc, getDocs } from "firebase/firestore";
 import CreateNote from "../components/CreateNote";
-import { useLoaderData } from "react-router-dom";
+import { useRouteLoaderData } from "react-router-dom";
 import NotesList from "../components/NotesList";
 
 const firebaseConfig = {
@@ -33,7 +32,7 @@ const colRef = collection(db, "notes"); //collection data
 const q = query(colRef, orderBy("createdAt", "desc"));
 
 function NotesPage() {
-    const notes = useLoaderData();
+    const notes = useRouteLoaderData("notesLoader");
     return (
         <>
             <CreateNote />
@@ -76,8 +75,6 @@ export async function action({ request, response }) {
 
     await addDoc(colRef, noteData);
     //treba reload samo ako prodje submit
-
     window.location.reload();
-
     return null;
 }

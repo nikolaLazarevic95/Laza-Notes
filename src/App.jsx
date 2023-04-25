@@ -15,6 +15,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import NoteDetailPage, {
     loader as noteDetailLoader,
+    action as noteDetailAction,
 } from "./pages/NoteDetailPage";
 // import EditNotePage from "./pages/EditNotePage";
 
@@ -31,45 +32,32 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <RootLayout />,
-        id: "root",
+        // id: "root",
         loader: tokenLoader,
         children: [
             {
-                //mora ovako jer je render "/" da nije loader i index true ovde, a zelis po default da ide na /notes posle logina
                 index: true,
-                // path: "",
-                // path: "notes",
                 loader: checkAuthLoader,
-                // element: <NotesPage />,
+                element: <NotesPage />,
             },
             {
                 path: "notes",
-                //trebace ti loader za firebase load, da li moze u loaderu da se pozove dr loader?
-                // loader: checkAuthLoader, //vrv ne treba laoder
-                element: <NotesPage />,
                 loader: notesLoader,
-                action: notesAction,
+                id: "notesLoader",
                 children: [
                     {
+                        index: true,
+                        element: <NotesPage />,
+                        action: notesAction,
+                    },
+                    {
                         path: ":noteId",
-                        loader: noteDetailLoader,
                         element: <NoteDetailPage />,
-                        // children: [
-                        //     //action: deleteEventAction,, loader uzima od parenta
-                        //     {
-                        //         // index: true,
-                        //     },
-                        //     // vuce loader is parent route i populate info iz njega?
-                        //     // { path: "edit", element: <EditNotePage /> },
-                        // ],
+                        loader: noteDetailLoader,
+                        action: noteDetailAction,
                     },
                 ],
             },
-            // {
-            //     path: "notes/:noteId",
-            //     loader: noteDetailLoader,
-            //     element: <NoteDetailPage />,
-            // },
 
             {
                 path: "trash",

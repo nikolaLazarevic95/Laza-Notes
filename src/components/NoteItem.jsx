@@ -3,8 +3,11 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Box, Button, CardActionArea, TextField } from "@mui/material";
 import Modal from "@mui/material/Modal";
-import { deleteDoc, doc, getFirestore, onSnapshot } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import { deleteDoc, doc, getFirestore } from "firebase/firestore";
+import { Form, useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import store from "../store";
+import { UIActions } from "../store/ui";
 
 const style = {
     position: "absolute",
@@ -19,12 +22,19 @@ const style = {
 };
 
 export default function NoteItem({ note }) {
+    const isOpen = useSelector((state) => state.ui.isOpen);
+    const { noteId } = useParams();
     const navigate = useNavigate();
 
     const [title, setTitle] = useState("");
     const [titleErr, setTitleErr] = useState(false);
     const [description, setDescription] = useState("");
     const [descriptionErr, setDescriptionErr] = useState(false);
+
+    const handleClose = () => {
+        store.dispatch(UIActions.setIsOpen(false));
+        navigate("..");
+    };
 
     // const handleSubmit = (event) => {
     //     event.preventDefault();
@@ -36,6 +46,12 @@ export default function NoteItem({ note }) {
         setTitleErr(false);
         setDescriptionErr(false);
 
+        if (note.title === "") {
+            setTitleErr(true);
+        }
+        if (note.description === "") {
+            setDescriptionErr(true);
+        }
         if (title === "") {
             setTitleErr(true);
         }
@@ -46,66 +62,71 @@ export default function NoteItem({ note }) {
 
     const handleDelete = async () => {
         const db = getFirestore();
-        const docRef = doc(db, "notes", note.id);
-        await deleteDoc(docRef).then(navigate("/notes"));
+        const docRef = doc(db, "notes", noteId);
+        await deleteDoc(docRef).then(navigate(".."));
+        navigate(0);
     };
     return (
         <Modal
-            // open={open} //redux?
-            // onClose={handleClose} //redux?
+            open={isOpen} //redux?
+            onClose={handleClose} //redux?
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
             <Card elevation={1} sx={style}>
-                <CardActionArea>
-                    <CardContent>
-                        <TextField
-                            name="title"
-                            error={titleErr}
-                            helperText={titleErr ? "Title cannot be empty" : ""}
-                            onChange={(event) => setTitle(event.target.value)}
-                        >
-                            {note.title}
-                        </TextField>
-                        <TextField
-                            name="description"
-                            error={descriptionErr}
-                            helperText={
-                                descriptionErr
-                                    ? "Description cannot be empty"
-                                    : ""
-                            }
-                            onChange={(event) =>
-                                setDescription(event.target.value)
-                            }
-                        >
-                            {note.description}
-                        </TextField>
-                    </CardContent>
-                </CardActionArea>
-                <Box
-                    sx={{
-                        mr: 0.5,
-                        ml: 0.5,
-                        display: "flex",
-                        justifyContent: "space-between",
-                    }}
-                >
-                    <Button
-                        color="primary"
-                        type="submit"
-                        onClick={handleCheckIfOk}
+                <Form method="PATCH">
+                    <CardActionArea>
+                        <CardContent>
+                            <TextField
+                                name="title"
+                                error={titleErr}
+                                helperText={
+                                    titleErr ? "Title cannot be empty" : ""
+                                }
+                                onChange={(event) =>
+                                    setTitle(event.target.value)
+                                }
+                                defaultValue={note ? note.title : ""}
+                            ></TextField>
+                            <TextField
+                                name="description"
+                                error={descriptionErr}
+                                helperText={
+                                    descriptionErr
+                                        ? "Description cannot be empty"
+                                        : ""
+                                }
+                                onChange={(event) =>
+                                    setDescription(event.target.value)
+                                }
+                                defaultValue={note ? note.description : ""}
+                            ></TextField>
+                        </CardContent>
+                    </CardActionArea>
+                    <Box
+                        sx={{
+                            mr: 0.5,
+                            ml: 0.5,
+                            display: "flex",
+                            justifyContent: "space-between",
+                        }}
                     >
-                        Save
-                    </Button>
-                    <Button
-                        color="primary"
-                        // type="submit"
-                        onClick={handleDelete}
-                    >
-                        Delete
-                    </Button>
-                </Box>
+                        <Button
+                            color="primary"
+                            type="submit"
+                            onClick={handleCheckIfOk}
+                        >
+                            Save
+                        </Button>
+                        <Button
+                            color="primary"
+                            // type="submit"
+                            onClick={handleDelete}
+                        >
+                            Delete
+                        </Button>
+                    </Box>
+                </Form>
             </Card>
         </Modal>
     );
