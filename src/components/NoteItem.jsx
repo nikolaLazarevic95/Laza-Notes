@@ -89,34 +89,31 @@ export default function NoteItem({ note }) {
         >
             <Card elevation={1} sx={style}>
                 <Form method="PATCH">
-                    <CardActionArea>
-                        <CardContent>
-                            <TextField
-                                name="title"
-                                error={titleErr}
-                                helperText={
-                                    titleErr ? "Title cannot be empty" : ""
-                                }
-                                onChange={(event) =>
-                                    setTitle(event.target.value)
-                                }
-                                defaultValue={note ? note.title : ""}
-                            ></TextField>
-                            <TextField
-                                name="description"
-                                error={descriptionErr}
-                                helperText={
-                                    descriptionErr
-                                        ? "Description cannot be empty"
-                                        : ""
-                                }
-                                onChange={(event) =>
-                                    setDescription(event.target.value)
-                                }
-                                defaultValue={note ? note.description : ""}
-                            ></TextField>
-                        </CardContent>
-                    </CardActionArea>
+                    <CardContent>
+                        <TextField
+                            sx={{ mb: 1 }}
+                            name="title"
+                            label="title"
+                            error={titleErr}
+                            helperText={titleErr ? "Title cannot be empty" : ""}
+                            onChange={(event) => setTitle(event.target.value)}
+                            defaultValue={note ? note.title : ""}
+                        ></TextField>
+                        <TextField
+                            name="description"
+                            label="description"
+                            error={descriptionErr}
+                            helperText={
+                                descriptionErr
+                                    ? "Description cannot be empty"
+                                    : ""
+                            }
+                            onChange={(event) =>
+                                setDescription(event.target.value)
+                            }
+                            defaultValue={note ? note.description : ""}
+                        ></TextField>
+                    </CardContent>
                     <Box
                         sx={{
                             mr: 0.5,

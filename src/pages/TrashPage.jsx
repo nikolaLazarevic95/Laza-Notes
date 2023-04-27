@@ -1,9 +1,8 @@
 import { getDocs } from "firebase/firestore";
-import Trash from "../components/Trash";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, query, orderBy } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-import { useLoaderData } from "react-router-dom";
+import { useRouteLoaderData } from "react-router-dom";
 import NotesList from "../components/NotesList";
 
 const firebaseConfig = {
@@ -25,11 +24,9 @@ const colRef = collection(db, "trash"); //collection data
 const q = query(colRef, orderBy("createdAt"));
 
 function TrashPage() {
-    const notes = useLoaderData();
+    const notes = useRouteLoaderData("trashLoader");
     return (
         <>
-            {/* <Trash /> */}
-            {/* //notesList component under? */}
             <NotesList notes={notes} />
         </>
     );
@@ -40,9 +37,9 @@ export default TrashPage;
 export async function loader() {
     let notes = [];
     let response = await getDocs(q);
-    response = await response.docs.forEach((doc) => {
+    response.docs.forEach((doc) => {
         notes.push({ ...doc.data(), id: doc.id });
     });
-    console.log(notes);
+    // console.log(notes);
     return null || notes;
 }
