@@ -3,7 +3,13 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Box, Button, CardActionArea, TextField } from "@mui/material";
 import Modal from "@mui/material/Modal";
-import { deleteDoc, doc, getFirestore } from "firebase/firestore";
+import {
+    addDoc,
+    collection,
+    deleteDoc,
+    doc,
+    getFirestore,
+} from "firebase/firestore";
 import { Form, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import store from "../store";
@@ -63,8 +69,16 @@ export default function NoteItem({ note }) {
     const handleDelete = async () => {
         const db = getFirestore();
         const docRef = doc(db, "notes", noteId);
-        await deleteDoc(docRef).then(navigate(".."));
-        navigate(0);
+        const colRefTrash = collection(db, "trash");
+        // const selectedNote = {
+        //     title: note.title,
+        //     description: note.description,
+        // };
+        await deleteDoc(docRef);
+        //send to trash
+        await addDoc(colRefTrash, note).then(navigate(".."));
+
+        navigate("..");
     };
     return (
         <Modal

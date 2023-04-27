@@ -1,11 +1,5 @@
 // import { useParams } from "react-router-dom";
-import {
-    doc,
-    getDoc,
-    getFirestore,
-    onSnapshot,
-    updateDoc,
-} from "firebase/firestore";
+import { doc, getDoc, getFirestore, updateDoc } from "firebase/firestore";
 import NoteItem from "../components/NoteItem";
 import { redirect, useLoaderData, useRouteLoaderData } from "react-router-dom";
 import NotesList from "../components/NotesList";

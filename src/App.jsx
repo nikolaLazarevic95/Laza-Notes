@@ -1,4 +1,3 @@
-// import MainPageScreen from "./pages/MainPageScreen";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/Root";
 import AuthenticationPage, {
@@ -10,14 +9,13 @@ import NotesPage, {
     loader as notesLoader,
     action as notesAction,
 } from "./pages/NotesPage";
-import TrashPage from "./pages/TrashPage";
+import TrashPage, { loader as trashLoader } from "./pages/TrashPage";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import NoteDetailPage, {
     loader as noteDetailLoader,
     action as noteDetailAction,
 } from "./pages/NoteDetailPage";
-// import EditNotePage from "./pages/EditNotePage";
 
 const theme = createTheme({
     palette: {
@@ -61,7 +59,7 @@ const router = createBrowserRouter([
 
             {
                 path: "trash",
-                loader: checkAuthLoader,
+                loader: trashLoader,
                 element: <TrashPage />, //vrv ne treba laoder
             },
             {
