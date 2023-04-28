@@ -22,7 +22,7 @@ const style = {
     transform: "translate(-50%, -50%)",
     width: 400,
     bgcolor: "background.paper",
-    border: "2px solid #000",
+    border: "1px solid #000",
     boxShadow: 24,
     p: 4,
 };
@@ -65,7 +65,13 @@ export default function NoteItem({ note }) {
         >
             <Card elevation={1} sx={style}>
                 <Form method="PATCH">
-                    <CardContent>
+                    <CardContent
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                        }}
+                    >
                         <Typography>Title: {note.title}</Typography>
                         <Typography>Description: {note.description}</Typography>
                     </CardContent>

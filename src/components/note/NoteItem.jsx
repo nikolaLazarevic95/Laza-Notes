@@ -22,7 +22,7 @@ const style = {
     transform: "translate(-50%, -50%)",
     width: 400,
     bgcolor: "background.paper",
-    border: "2px solid #000",
+    border: "1px solid #000",
     boxShadow: 24,
     p: 4,
 };
@@ -32,9 +32,9 @@ export default function NoteItem({ note }) {
     const { noteId } = useParams();
     const navigate = useNavigate();
 
-    const [title, setTitle] = useState("");
+    const [title, setTitle] = useState(note.title);
     const [titleErr, setTitleErr] = useState(false);
-    const [description, setDescription] = useState("");
+    const [description, setDescription] = useState(note.description);
     const [descriptionErr, setDescriptionErr] = useState(false);
 
     const handleClose = () => {
@@ -52,12 +52,12 @@ export default function NoteItem({ note }) {
         setTitleErr(false);
         setDescriptionErr(false);
 
-        if (note.title === "") {
-            setTitleErr(true);
-        }
-        if (note.description === "") {
-            setDescriptionErr(true);
-        }
+        // if (note.title === "") {
+        //     setTitleErr(true);
+        // }
+        // if (note.description === "") {
+        //     setDescriptionErr(true);
+        // }
         if (title === "") {
             setTitleErr(true);
         }
@@ -89,7 +89,13 @@ export default function NoteItem({ note }) {
         >
             <Card elevation={1} sx={style}>
                 <Form method="PATCH">
-                    <CardContent>
+                    <CardContent
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                        }}
+                    >
                         <TextField
                             sx={{ mb: 1 }}
                             name="title"

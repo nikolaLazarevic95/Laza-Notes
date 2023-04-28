@@ -1,5 +1,5 @@
 import { useLoaderData, useRouteLoaderData } from "react-router-dom";
-import DeleteNoteItem from "../../components/note/DeleteNoteItem";
+import DeleteNoteItem from "../../components/note/TrashNoteItem";
 import NotesList from "../../components/note/NotesList";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
@@ -9,7 +9,7 @@ function TrashDetailPage() {
     return (
         <>
             <DeleteNoteItem note={note} />
-            <NotesList notes={notes} />;
+            <NotesList notes={notes} />
         </>
     );
 }

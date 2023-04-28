@@ -46,7 +46,7 @@ export async function action({ request, params }) {
         return null;
     }
     const id = params.noteId;
-    console.log(id);
+    // console.log(id);
     const db = getFirestore();
     const docRef = doc(db, "notes", id);
 
