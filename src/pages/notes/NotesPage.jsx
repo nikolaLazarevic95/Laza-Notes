@@ -9,9 +9,9 @@ import {
 import { getAuth } from "firebase/auth";
 
 import { addDoc, getDocs } from "firebase/firestore";
-import CreateNote from "../components/CreateNote";
+import CreateNote from "../../components/note/CreateNote";
 import { useRouteLoaderData } from "react-router-dom";
-import NotesList from "../components/NotesList";
+import NotesList from "../../components/note/NotesList";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAuW5oe4scG7Tutkkm-xdovSk1bCBFUy3o",

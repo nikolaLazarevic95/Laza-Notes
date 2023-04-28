@@ -1,6 +1,6 @@
 import { useLoaderData, useRouteLoaderData } from "react-router-dom";
-import DeleteNoteItem from "../components/DeleteNoteItem";
-import NotesList from "../components/NotesList";
+import DeleteNoteItem from "../../components/note/DeleteNoteItem";
+import NotesList from "../../components/note/NotesList";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 function TrashDetailPage() {

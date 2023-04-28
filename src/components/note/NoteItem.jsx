@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { Box, Button, CardActionArea, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import {
     addDoc,
@@ -12,8 +12,8 @@ import {
 } from "firebase/firestore";
 import { Form, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import store from "../store";
-import { UIActions } from "../store/ui";
+import store from "../../store";
+import { UIActions } from "../../store/ui";
 
 const style = {
     position: "absolute",
@@ -102,6 +102,9 @@ export default function NoteItem({ note }) {
                         <TextField
                             name="description"
                             label="description"
+                            multiline
+                            minRows={5}
+                            maxRows={8}
                             error={descriptionErr}
                             helperText={
                                 descriptionErr

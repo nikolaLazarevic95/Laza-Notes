@@ -2,7 +2,7 @@ import MainScreen from "../components/MainScreen";
 function MainPage() {
     return (
         <>
-            {/* //navbar itd */}
+            {/* outlet is inside MainScreen */}
             <MainScreen />
         </>
     );

@@ -1,10 +1,10 @@
 import { redirect } from "react-router-dom";
-import SignForm from "../components/SignForm";
-import { auth } from "../index";
+import SignForm from "../../components/SignForm";
+import { auth } from "../../index";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { authActions } from "../store/auth";
-import store from "../store";
+import { authActions } from "../../store/auth";
+import store from "../../store";
 
 let authError = null;
 

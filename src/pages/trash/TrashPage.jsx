@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, query, orderBy } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useRouteLoaderData } from "react-router-dom";
-import NotesList from "../components/NotesList";
+import NotesList from "../../components/note/NotesList";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAuW5oe4scG7Tutkkm-xdovSk1bCBFUy3o",

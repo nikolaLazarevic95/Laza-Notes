@@ -1,9 +1,9 @@
 // import { useParams } from "react-router-dom";
 import { doc, getDoc, getFirestore, updateDoc } from "firebase/firestore";
-import NoteItem from "../components/NoteItem";
+import NoteItem from "../../components/note/NoteItem";
 import { redirect, useLoaderData, useRouteLoaderData } from "react-router-dom";
-import NotesList from "../components/NotesList";
-import CreateNote from "../components/CreateNote";
+import NotesList from "../../components/note/NotesList";
+import CreateNote from "../../components/note/CreateNote.jsx";
 
 function NoteDetailPage() {
     const note = useLoaderData();

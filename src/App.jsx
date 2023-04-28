@@ -2,23 +2,23 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/Root";
 import AuthenticationPage, {
     action as authAction,
-} from "./pages/Authentication";
+} from "./pages/authPages/Authentication";
 import { checkAuthLoader, tokenLoader, checkIfLoggedIn } from "./util/auth";
-import { action as logoutAction } from "./pages/Logout";
+import { action as logoutAction } from "./pages/authPages/Logout";
 import NotesPage, {
     loader as notesLoader,
     action as notesAction,
-} from "./pages/NotesPage";
-import TrashPage, { loader as trashLoader } from "./pages/TrashPage";
+} from "./pages/notes/NotesPage";
+import TrashPage, { loader as trashLoader } from "./pages/trash/TrashPage";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import NoteDetailPage, {
     loader as noteDetailLoader,
     action as noteDetailAction,
-} from "./pages/NoteDetailPage";
+} from "./pages/notes/NoteDetailPage";
 import TrashDetailPage, {
     loader as trashDetailLoader,
-} from "./pages/TrashDetailPage";
+} from "./pages/trash/TrashDetailPage";
 
 const theme = createTheme({
     palette: {

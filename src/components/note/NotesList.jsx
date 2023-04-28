@@ -1,8 +1,8 @@
 import { Container, Grid } from "@mui/material";
 import NoteCard from "./NoteCard";
 import { Link } from "react-router-dom";
-import store from "../store";
-import { UIActions } from "../store/ui";
+import store from "../../store";
+import { UIActions } from "../../store/ui";
 
 function NotesList({ notes }) {
     const handleNoteClicked = () => {
