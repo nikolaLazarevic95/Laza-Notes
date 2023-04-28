@@ -44,6 +44,7 @@ function CreateNote() {
                             <TextField
                                 name="title"
                                 error={titleErr}
+                                minRows={2}
                                 helperText={
                                     titleErr ? "Title cannot be empty" : ""
                                 }
@@ -68,6 +69,7 @@ function CreateNote() {
                             {isTitleClicked && (
                                 <TextField
                                     name="description"
+                                    minRows={4}
                                     sx={{
                                         mt: 1,
                                         pt: 0,
@@ -90,7 +92,6 @@ function CreateNote() {
                                     }
                                     margin="normal"
                                     multiline
-                                    rows={2}
                                 />
                             )}
                             {isTitleClicked && (
