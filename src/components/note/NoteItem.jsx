@@ -82,8 +82,8 @@ export default function NoteItem({ note }) {
     };
     return (
         <Modal
-            open={isOpen} //redux?
-            onClose={handleClose} //redux?
+            open={isOpen} //redux
+            onClose={handleClose} //redux
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
