@@ -6,6 +6,7 @@ import store from "./store/index";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import "./index.css";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
