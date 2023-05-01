@@ -72,8 +72,12 @@ export default function NoteItem({ note }) {
                             alignItems: "center",
                         }}
                     >
-                        <Typography>Title: {note.title}</Typography>
-                        <Typography>Description: {note.description}</Typography>
+                        <Typography variant="h6">Title</Typography>
+                        <Typography> {note.title}</Typography>
+                        <Typography sx={{ mt: 1 }} variant="h6">
+                            Description{" "}
+                        </Typography>
+                        <Typography> {note.description}</Typography>
                     </CardContent>
                     <Box
                         sx={{

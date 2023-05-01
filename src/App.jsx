@@ -39,6 +39,7 @@ const router = createBrowserRouter([
             {
                 index: true,
                 loader: checkAuthLoader,
+                //? moze bez elementa ovde />,
                 element: <NotesPage />,
             },
             {

@@ -21,7 +21,7 @@ const auth = getAuth(app);
 const db = getFirestore(); // initialize services
 const colRef = collection(db, "trash"); //collection data
 
-const q = query(colRef, orderBy("createdAt"));
+const q = query(colRef, orderBy("createdAt", "desc"));
 
 function TrashPage() {
     const notes = useRouteLoaderData("trashLoader");

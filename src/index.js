@@ -43,7 +43,7 @@ export const colRef = collection(db, "notes"); //collection data
 
 // //subscribing to auth changes
 // onAuthStateChanged(auth, (user) => {
-//     // console.log("user status changed: ", user);
+//     console.log("user status changed: ", user);
 // });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

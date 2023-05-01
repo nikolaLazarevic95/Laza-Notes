@@ -14,22 +14,14 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-// import { mainListItems } from "./ListItems";
 import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
-//
-import Menu from "@mui/material/Menu";
-import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import { auth } from "../index";
-import { signOut } from "firebase/auth";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { ListItemButton, ListItemIcon } from "@mui/material";
 import ListItemText from "@mui/material/ListItemText";
+import UserMenu from "./UserMenu";
 
 function Copyright(props) {
     return (
@@ -105,14 +97,6 @@ function NotesContent() {
     const [open, setOpen] = React.useState(true);
     const navigate = useNavigate();
     const location = useLocation();
-    const userEmail = useSelector((state) => state.auth.userEmail);
-    const userEmailUppercase = userEmail ? userEmail.toUpperCase() : "";
-    // const token = useLoaderData();
-
-    const settings = [
-        { name: userEmail },
-        { name: "Logout", route: "/logout" },
-    ];
 
     const menuItems = [
         {
@@ -131,36 +115,6 @@ function NotesContent() {
         setOpen(!open);
     };
 
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
-    // const [selectedItem, setSelectedItem] = React.useState(0);
-
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
-
-    async function handleCloseUserMenu(e) {
-        const action = e.target.innerHTML;
-        // console.log(e.target);
-
-        if (action === "Logout") {
-            await signOut(auth)
-                .then(() => {
-                    localStorage.removeItem("token");
-                    navigate("/auth?mode=login");
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
-
-        setAnchorElUser(null);
-    }
-
-    // function handleDrawerClicked(event, index, item) {
-    // setSelectedItem(index);
-    // console.log(item);
-    //     navigate(`${item.path}`);
-    // }
     return (
         <ThemeProvider theme={mdTheme}>
             <Box sx={{ display: "flex" }}>
@@ -185,7 +139,10 @@ function NotesContent() {
                         </IconButton>
                         <NoteAddOutlinedIcon
                             fontSize="large"
-                            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                            sx={{
+                                display: { xs: "none", md: "flex" },
+                                mr: 1,
+                            }}
                         />
                         <Typography
                             component="h1"
@@ -196,54 +153,8 @@ function NotesContent() {
                         >
                             Laza Notes
                         </Typography>
-                        <Box sx={{ flexGrow: 0 }}>
-                            <Tooltip title="Open settings">
-                                <IconButton
-                                    onClick={handleOpenUserMenu}
-                                    sx={{ p: 0 }}
-                                >
-                                    <Avatar
-                                        // alt={userEmail.toUpperCase()}
-                                        alt={userEmailUppercase}
-                                        src="/static/images/avatar/2.jpg"
-                                    />
-                                </IconButton>
-                            </Tooltip>
-                            {/* <Form action="/logout" method="post">
-                                <button>Logout</button>
-                            </Form> */}
-
-                            <Menu
-                                sx={{ mt: "45px" }}
-                                id="menu-appbar"
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: "top",
-                                    horizontal: "right",
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: "top",
-                                    horizontal: "right",
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
-                            >
-                                {settings.map((setting) => (
-                                    <MenuItem
-                                        key={setting.name}
-                                        onClick={handleCloseUserMenu}
-                                    >
-                                        {/* <Typography textAlign="center">
-                                            {userEmail}
-                                        </Typography> */}
-                                        <Typography textAlign="center">
-                                            {setting.name}
-                                        </Typography>
-                                    </MenuItem>
-                                ))}
-                            </Menu>
-                        </Box>
+                        {/* !! odavde da ide tvoja avatar/menu componenta */}
+                        <UserMenu />
                     </Toolbar>
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
@@ -266,10 +177,6 @@ function NotesContent() {
                             <ListItemButton
                                 key={item.path}
                                 selected={location.pathname === item.path}
-                                // selected={selectedItem === index}
-                                // onClick={(event) =>
-                                //     handleDrawerClicked(event, index, item)
-                                // }
                                 onClick={() => navigate(item.path)}
                             >
                                 <ListItemIcon>{item.icon}</ListItemIcon>
