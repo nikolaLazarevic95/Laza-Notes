@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
-import Link from "@mui/material/Link";
+// import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -16,27 +16,7 @@ import {
     useSearchParams,
     Link as LinkRouter,
 } from "react-router-dom";
-
-function Copyright(props) {
-    return (
-        <Typography
-            variant="body2"
-            color="text.secondary"
-            align="center"
-            {...props}
-        >
-            {"Copyright © "}
-            <Link
-                color="inherit"
-                href="https://www.linkedin.com/in/nikola-lazarevi%C4%87-89a493150/"
-            >
-                Nikola Lazarevic
-            </Link>{" "}
-            {new Date().getFullYear()}
-            {"."}
-        </Typography>
-    );
-}
+import Copyright from "./UI/Copyright";
 
 const theme = createTheme();
 
