@@ -10,6 +10,9 @@ import UserMenu from "../UserMenu";
 
 // const drawerWidth = 240;
 
+//for always open, opposite off dynamic
+let open = true;
+
 function AppBarComp() {
     // const AppBar = styled(MuiAppBar, {
     //     shouldForwardProp: (prop) => prop !== "open",
@@ -30,9 +33,9 @@ function AppBarComp() {
     // }));
     return (
         <AppBar
-        // open={open}
-        // open="true"
-        // position="static"
+            open={open}
+            // open="true"
+            // position="static"
         >
             <Toolbar
                 sx={{

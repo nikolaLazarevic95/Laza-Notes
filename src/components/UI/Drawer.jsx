@@ -15,7 +15,11 @@ import ListItemText from "@mui/material/ListItemText";
 // import { styled } from "@mui/material/styles";
 // import MuiDrawer from "@mui/material/Drawer";
 import Drawer from "@mui/material/Drawer";
+
 const drawerWidth = 240;
+
+//for always open, opposite off dynamic
+let open = true;
 
 const classes = {
     drawer: {
@@ -85,8 +89,8 @@ function DrawerComp() {
             // variant="permanent"
             variant="persistent"
             anchor="left"
-            // open={open}
-            open="true"
+            open={open}
+            // open="true"
         >
             {/* //! Toolbar za manual open close */}
             {/* <Toolbar
