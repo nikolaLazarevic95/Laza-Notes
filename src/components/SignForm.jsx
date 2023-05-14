@@ -1,6 +1,5 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
 // import Link from "@mui/material/Link";
@@ -41,7 +40,6 @@ export default function SignForm() {
         <Form method="post">
             <ThemeProvider theme={theme}>
                 <Container component="main" maxWidth="xs">
-                    <CssBaseline />
                     <Box
                         sx={{
                             marginTop: 8,
@@ -50,7 +48,6 @@ export default function SignForm() {
                             alignItems: "center",
                         }}
                     >
-                        {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar> */}
                         {
                             <NoteAddOutlinedIcon
                                 fontSize="large"
@@ -97,8 +94,16 @@ export default function SignForm() {
                                     />
                                 </Grid>
                             </Grid>
-                            <Grid>
-                                {/* <Button
+                        </Box>
+                        <Grid container>
+                            <Grid item xs={12}>
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    {/* <Button
                                     //!link to login
                                     // type="submit"
                                     component={Link}
@@ -108,34 +113,34 @@ export default function SignForm() {
                                 >
                                     {isLogin ? "Sign UP" : "Login"}{" "}
                                 </Button> */}
-                                <Button
-                                    variant="contained"
-                                    sx={{ mt: 3, mb: 2, ml: 1 }}
-                                >
-                                    <LinkRouter
-                                        style={{
-                                            textDecoration: "none",
-                                            backgroundColor: "transparent",
-                                            color: "white",
-                                        }}
-                                        to={`?mode=${
-                                            isLogin ? "signUp" : "login"
-                                        }`}
+                                    <Button
+                                        variant="contained"
+                                        sx={{ mt: 3, mb: 2 }}
                                     >
-                                        {isLogin ? "Sign UP" : "Login"}
-                                    </LinkRouter>
-                                </Button>
-                                <Button
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                    variant="contained"
-                                    sx={{ mt: 3, mb: 2, ml: 26, mr: 0 }}
-                                >
-                                    {isSubmitting ? "........." : "SUBMIT"}
-                                </Button>
+                                        <LinkRouter
+                                            style={{
+                                                textDecoration: "none",
+                                                backgroundColor: "transparent",
+                                                color: "white",
+                                            }}
+                                            to={`?mode=${
+                                                isLogin ? "signUp" : "login"
+                                            }`}
+                                        >
+                                            {isLogin ? "Sign UP" : "Login"}
+                                        </LinkRouter>
+                                    </Button>
+                                    <Button
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        variant="contained"
+                                        sx={{ mt: 3, mb: 2 }}
+                                    >
+                                        {isSubmitting ? "........." : "SUBMIT"}
+                                    </Button>
+                                </Box>
                             </Grid>
-                            <Grid container justifyContent="flex-end"></Grid>
-                        </Box>
+                        </Grid>
                     </Box>
                     <Copyright sx={{ mt: 5 }} />
                 </Container>
