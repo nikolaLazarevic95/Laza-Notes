@@ -1,20 +1,33 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
 import { Outlet } from "react-router-dom";
 import AppBarComp from "./UI/AppBar.jsx";
 import DrawerComp from "./UI/Drawer";
-import Copyright from "./UI/Copyright.jsx";
+import Copyright from "./UI/Footer.jsx";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-const mdTheme = createTheme();
+const mdTheme = createTheme({
+    palette: {
+        primary: {
+            main: "#2196f3",
+        },
+        secondary: {
+            main: "#FFFFFF",
+        },
+    },
+});
 
 function NotesContent() {
     return (
         <ThemeProvider theme={mdTheme}>
-            <Box sx={{ display: "flex" }}>
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
                 <AppBarComp />
                 <DrawerComp />
                 <Box
@@ -33,10 +46,15 @@ function NotesContent() {
                     {/* // OVDE CONTENT IZNAD COPYRIGHT-A U MAIN SCREEN */}
                     <Outlet />
 
-                    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-                        <Grid container spacing={3}></Grid>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
                         <Copyright sx={{ pt: 4 }} />
-                    </Container>
+                    </Box>
                 </Box>
             </Box>
         </ThemeProvider>

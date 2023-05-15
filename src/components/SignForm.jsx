@@ -15,9 +15,18 @@ import {
     useSearchParams,
     Link as LinkRouter,
 } from "react-router-dom";
-import Copyright from "./UI/Copyright";
+import Copyright from "./UI/Footer";
 
-const theme = createTheme();
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: "#2196f3",
+        },
+        secondary: {
+            main: "#FFFFFF",
+        },
+    },
+});
 
 export default function SignForm() {
     const [searchParams] = useSearchParams();
