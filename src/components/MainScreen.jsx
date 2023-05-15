@@ -51,6 +51,7 @@ function NotesContent() {
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
+                            mr: 8,
                         }}
                     >
                         <Footer sx={{ pt: 4 }} />

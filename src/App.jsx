@@ -19,6 +19,7 @@ import NoteDetailPage, {
 import TrashDetailPage, {
     loader as trashDetailLoader,
 } from "./pages/trash/TrashDetailPage";
+import AboutUsPage from "./pages/about/AboutUsPage";
 
 const theme = createTheme({
     palette: {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
                         loader: trashDetailLoader,
                     },
                 ],
+            },
+            {
+                path: "about",
+                children: [{ index: true, element: <AboutUsPage /> }],
             },
             {
                 path: "auth", //do relative paths, no / in children routes

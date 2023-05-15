@@ -15,6 +15,7 @@ import ListItemText from "@mui/material/ListItemText";
 // import { styled } from "@mui/material/styles";
 // import MuiDrawer from "@mui/material/Drawer";
 import Drawer from "@mui/material/Drawer";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 const drawerWidth = 240;
 
@@ -45,6 +46,11 @@ function DrawerComp() {
             title: "Trash",
             icon: <DeleteOutlineOutlinedIcon />,
             path: "/trash",
+        },
+        {
+            title: "About",
+            icon: <InfoOutlinedIcon />,
+            path: "/about",
         },
     ];
 
