@@ -15,7 +15,7 @@ import {
     useSearchParams,
     Link as LinkRouter,
 } from "react-router-dom";
-import Copyright from "./UI/Footer";
+import Footer from "./UI/Footer";
 
 const theme = createTheme({
     palette: {
@@ -151,7 +151,7 @@ export default function SignForm() {
                             </Grid>
                         </Grid>
                     </Box>
-                    <Copyright sx={{ mt: 5 }} />
+                    <Footer sx={{ mt: 5 }} />
                 </Container>
             </ThemeProvider>
         </Form>

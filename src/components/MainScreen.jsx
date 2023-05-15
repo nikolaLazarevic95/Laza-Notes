@@ -4,7 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import { Outlet } from "react-router-dom";
 import AppBarComp from "./UI/AppBar.jsx";
 import DrawerComp from "./UI/Drawer";
-import Copyright from "./UI/Footer.jsx";
+import Footer from "./UI/Footer.jsx";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const mdTheme = createTheme({
@@ -53,7 +53,7 @@ function NotesContent() {
                             alignItems: "center",
                         }}
                     >
-                        <Copyright sx={{ pt: 4 }} />
+                        <Footer sx={{ pt: 4 }} />
                     </Box>
                 </Box>
             </Box>
