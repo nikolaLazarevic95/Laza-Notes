@@ -10,7 +10,7 @@ https://laza-notes-b4add7.netlify.app
 
  -<a href="https://react.dev/">React</a>
   
--<a href ="https://app.netlify.com/teams/nikolalazarevic95/overview/">Netlify for deploying the website</a>  
+-<a href ="https://app.netlify.com/">Netlify for deploying the website</a>  
 
 -<a href ="https://firebase.google.com">Firebase for backend</a>
 
