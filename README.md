@@ -14,6 +14,10 @@ https://laza-notes-b4add7.netlify.app
 
 -<a href ="https://firebase.google.com">Firebase for backend</a>
 
+-<a href ="https://mui.com">MUI 5 for the Design</a>
+
+-<a href ="https://redux-toolkit.js.org/">Redux Toolkit for a app wide state </a>
+
 
 <b>⚡ Installation  </b>
 
