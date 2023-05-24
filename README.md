@@ -17,7 +17,7 @@ https://laza-notes-b4add7.netlify.app
 
 <b>⚡ Installation  </b>
 
-  clone repo
-  npm install
-  npm start
+  - clone repo   
+  - npm install
+  - npm start
 
